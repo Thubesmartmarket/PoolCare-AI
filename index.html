@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PoolCare AI | Pool services</title>
+<meta name="description" content="Weekly maintenance, green pool recovery and equipment — structured so pool owners compare service plans they'll pay all year.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070A0F;--panel:rgba(18,24,36,.88);--panel2:#151C2A;--border:rgba(255,255,255,.08);
+  --text:#F1F5F9;--muted:#94A3B8;--accent:#38BDF8;--accent2:#0EA5E9;--phone-tint:#E0F2FE;
+  --radius:20px;--shadow:0 24px 80px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.container{width:min(1140px,92%);margin:0 auto}
+header{position:sticky;top:0;z-index:100;backdrop-filter:blur(18px);background:rgba(7,10,15,.82);border-bottom:1px solid var(--border)}
+nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px}
+.logo{font-weight:900;font-size:1.15rem;letter-spacing:-.03em}
+.logo span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap}
+.nav-links a{color:var(--muted);font-size:.84rem;font-weight:600;padding:8px 11px;border-radius:999px}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:14px;padding:13px 20px;font-weight:800;cursor:pointer;transition:.2s;font-size:.94rem;font-family:inherit}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0B1220;box-shadow:0 12px 40px color-mix(in srgb,var(--accent) 35%,transparent)}
+.btn-secondary{background:var(--panel2);color:var(--text);border:1px solid var(--border)}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-sm{padding:9px 14px;font-size:.84rem;border-radius:12px}
+.hero-section{padding:100px 0 70px;position:relative;overflow:hidden;min-height:680px}
+.hero-section::before,.hero-section::after{content:"";position:absolute;border-radius:50%;z-index:0;animation:float 8s ease-in-out infinite;pointer-events:none}
+.hero-section::before{width:420px;height:420px;background:color-mix(in srgb,var(--accent) 18%,transparent);top:40px;right:-120px}
+.hero-section::after{width:280px;height:280px;background:color-mix(in srgb,var(--accent2) 12%,transparent);bottom:-80px;left:-80px;animation-delay:-3s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.eyebrow::before{content:"";width:22px;height:3px;border-radius:99px;background:var(--accent)}
+.hero h1{font-size:clamp(2.05rem,4.5vw,3.2rem);line-height:1.08;letter-spacing:-.04em;margin-bottom:16px;font-weight:900}
+.hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .lead{color:var(--muted);font-size:1.08rem;max-width:52ch;margin-bottom:26px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.trust-note{display:flex;flex-wrap:wrap;gap:8px;align-items:center;color:var(--muted);font-size:.86rem;font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.stat{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:16px;padding:16px 12px;text-align:center}
+.stat h3{color:var(--accent);font-size:1.35rem;margin-bottom:4px;font-weight:900}
+.stat p{font-size:.78rem;color:var(--muted);margin:0}
+.hero-visual{display:flex;justify-content:center;align-items:center;position:relative}
+.phone-wrap{position:relative;animation:float 6s ease-in-out infinite}
+.phone-glow{position:absolute;inset:8%;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 40%,transparent),color-mix(in srgb,var(--accent2) 28%,transparent));filter:blur(42px);z-index:-1}
+.phone{width:300px;height:560px;padding:11px;background:#0B1220;border-radius:40px;box-shadow:0 35px 80px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.08);transform:rotate(2.5deg)}
+.phone-screen{height:100%;border-radius:32px;overflow:hidden;background:linear-gradient(165deg,var(--phone-tint) 0%,#fff 45%,#f8fafc 100%);color:#0F172A}
+.phone-notch{width:110px;height:26px;background:#0B1220;border-radius:0 0 16px 16px;margin:0 auto 6px}
+.phone-top{padding:8px 18px 6px;display:flex;justify-content:space-between;align-items:center}
+.phone-brand{font-weight:900;font-size:.9rem}
+.phone-dot{width:9px;height:9px;background:var(--accent);border-radius:50%;box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 20%,transparent)}
+.phone-hero-img{height:110px;margin:0 14px 10px;border-radius:16px;background-size:cover;background-position:center}
+.phone-content{padding:4px 16px 18px}
+.phone-label{font-size:11px;font-weight:800;color:#64748B;text-transform:uppercase;letter-spacing:1px}
+.phone-title{font-size:1.45rem;font-weight:900;margin:4px 0 12px}
+.mock-card{background:#fff;padding:12px 14px;border-radius:14px;margin-bottom:8px;box-shadow:0 8px 18px rgba(15,23,42,.06)}
+.mock-row{display:flex;justify-content:space-between;gap:10px;font-size:.86rem}
+.mock-row span{color:#64748B;font-weight:600}
+.mock-button{margin-top:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0B1220;text-align:center;padding:12px;border-radius:12px;font-weight:800;font-size:.9rem}
+section{padding:72px 0}
+.section-head{text-align:center;margin-bottom:36px}
+.section-head h2{font-size:clamp(1.55rem,3vw,2.15rem);margin-bottom:10px;font-weight:900}
+.section-head p{color:var(--muted);max-width:58ch;margin:0 auto}
+.cards,.steps,.membership-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card,.step,.plan{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:24px}
+.benefit .icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent);font-weight:900;margin-bottom:14px}
+.card h3,.step h3{margin-bottom:8px;font-size:1.06rem;font-weight:800}
+.card p,.step p{color:var(--muted);font-size:.92rem}
+.step .n{width:36px;height:36px;border-radius:12px;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent);display:grid;place-items:center;font-weight:900;margin-bottom:14px}
+.feature-band{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:center}
+.feature-band img{width:100%;border-radius:22px;border:1px solid var(--border);box-shadow:var(--shadow);object-fit:cover;max-height:340px}
+.plan{display:flex;flex-direction:column}
+.plan.featured{border-color:color-mix(in srgb,var(--accent) 55%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 25%,transparent),var(--shadow);transform:scale(1.03)}
+.price{font-size:2.1rem;font-weight:900;margin:10px 0 4px}
+.price span{font-size:.9rem;color:var(--muted);font-weight:600}
+.plan ul{list-style:none;margin:16px 0 20px;flex:1}
+.plan li{padding:8px 0;color:var(--muted);font-size:.92rem;border-bottom:1px solid rgba(255,255,255,.04)}
+.plan li strong{color:var(--text)}
+.badge{display:inline-block;background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent);font-size:.7rem;font-weight:800;padding:5px 10px;border-radius:999px;margin-bottom:10px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:24px;padding:26px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+label{font-size:.8rem;font-weight:700;color:var(--muted)}
+input,select,textarea{background:var(--panel2);border:1px solid var(--border);border-radius:12px;color:var(--text);padding:12px 13px;font:inherit}
+textarea{min-height:96px;resize:vertical}
+.tabs{display:flex;gap:8px;margin-bottom:16px}
+.tab{background:transparent;border:1px solid var(--border);color:var(--muted);padding:8px 14px;border-radius:10px;cursor:pointer;font-weight:700;font-family:inherit}
+.tab.active{background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--text);border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+.muted{color:var(--muted)}.success{color:#4ADE80}.error{color:#FB7185}
+.usage{margin:12px 0 0;font-size:.9rem;color:var(--muted)}
+.usage-bar{height:8px;background:#1A2332;border-radius:99px;overflow:hidden;margin-top:8px}
+.usage-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%}
+.report{background:var(--panel2);border:1px solid var(--border);border-radius:18px;padding:20px;margin-top:18px}
+.report ul{margin:10px 0 0 18px;color:var(--muted)}
+.score{display:inline-flex;gap:8px;background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);padding:8px 14px;border-radius:999px;font-weight:800;margin:12px 0}
+.history-item{border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px}
+.faq details{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-bottom:10px}
+.faq summary{cursor:pointer;font-weight:700}
+.faq p{color:var(--muted);margin-top:10px;font-size:.92rem}
+.testimonial .stars{color:var(--accent);letter-spacing:2px;margin-bottom:10px;font-size:.85rem}
+.testimonial p{font-size:.95rem;font-style:italic;margin-bottom:14px}
+.testimonial .t-meta{font-size:.85rem;display:flex;gap:6px;color:var(--muted)}
+.testimonial .t-meta strong{color:var(--text)}
+footer{border-top:1px solid var(--border);padding:28px 0;color:var(--muted);font-size:.88rem}
+.footer-row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.pay-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
+.note{font-size:.85rem;color:var(--muted);margin-top:12px}
+.locked{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);border-radius:12px;padding:12px 14px;font-size:.9rem;margin-top:12px}
+.recur{display:inline-block;background:rgba(74,222,128,.12);color:#4ADE80;border:1px solid rgba(74,222,128,.25);font-size:.7rem;font-weight:800;padding:4px 10px;border-radius:999px;margin-left:8px;vertical-align:middle}
+@media(max-width:960px){.hero,.feature-band,.cards,.steps,.membership-grid,.form-grid{grid-template-columns:1fr}.plan.featured{transform:none}.nav-links{display:none}.phone{width:270px;height:510px;transform:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <a class="logo" href="#top">PoolCare <span>AI</span></a>
+      <div class="nav-links">
+        <a href="#benefits">Benefits</a>
+        <a href="#how">How it works</a>
+        <a href="#membership">Membership</a>
+        <a href="#workspace">Pool brief</a>
+        <a href="#testimonials">Stories</a>
+        <a href="#account">Account</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="btn btn-primary btn-sm" href="#workspace">Build my pool brief</a>
+    </nav>
+  </div>
+</header>
+<main id="top">
+  <section class="hero-section">
+    <div class="container hero">
+      <div>
+        <div class="eyebrow">Pool services · built for ongoing use</div>
+        <h1>Compare pool services for chemicals, cleaning and call-outs. <span>Come back every month.</span></h1>
+        <p class="lead">Weekly maintenance, green pool recovery and equipment — structured so pool owners compare service plans they'll pay all year.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#workspace">Build my pool brief</a>
+          <a class="btn btn-secondary" href="#membership">View plans</a>
+        </div>
+        <div class="trust-note"><span>✓ <strong>Free plan included</strong></span><span>·</span><span>Recurring decisions</span><span>·</span><span>PayPal checkout</span></div>
+        <div class="stats">
+          <div class="stat"><h3>3</h3><p>Free packs / month</p></div>
+          <div class="stat"><h3>∞</h3><p>Pro unlimited packs</p></div>
+          <div class="stat"><h3>↻</h3><p>Built for repeat use</p></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="phone-wrap">
+          <div class="phone-glow"></div>
+          <div class="phone"><div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="phone-top"><div class="phone-brand">PoolCare AI</div><div class="phone-dot"></div></div>
+            <div class="phone-hero-img" style="background-image:url('https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&amp;fit=crop&amp;w=1200&amp;q=80')" role="img" aria-label="Clean swimming pool"></div>
+            <div class="phone-content">
+              <div class="phone-label">Pool pack</div>
+              <div class="phone-title">Routine 76</div>
+              <div class="mock-card"><div class="mock-row"><strong>Plan</strong><span>Weekly service</span></div></div>
+<div class="mock-card"><div class="mock-row"><strong>Issue</strong><span>Cloudy water</span></div></div>
+<div class="mock-card"><div class="mock-row"><strong>Next</strong><span>Compare 2 techs</span></div></div>
+              <div class="mock-button">View full brief</div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="benefits">
+    <div class="container">
+      <div class="section-head">
+        <h2>Why people use PoolCare <span class="recur">RECURRING</span></h2>
+        <p>Designed for decisions that come back — not only once-off purchases.</p>
+      </div>
+      <div class="cards"><div class="card benefit"><div class="icon">✦</div><h3>Year-round service</h3><p>Weekly plans, not only emergency green-pool panic.</p></div>
+<div class="card benefit"><div class="icon">◎</div><h3>Compare inclusions</h3><p>Chemicals, visits and call-out rules.</p></div>
+<div class="card benefit"><div class="icon">◇</div><h3>Revisit yearly</h3><p>Adjust when equipment or usage changes.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container feature-band">
+      <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Clean swimming pool" loading="lazy">
+      <div class="panel">
+        <div class="eyebrow">Ongoing value</div>
+        <h2 style="font-size:1.6rem;margin-bottom:12px;font-weight:900">A membership that matches how you actually use it</h2>
+        <p class="muted" style="margin-bottom:14px">PoolCare is for people who face this decision more than once — renewals, monthly routines, seasonal changes and growing needs.</p>
+        <ul style="color:var(--muted);margin-left:18px;font-size:.92rem">
+          <li style="margin:8px 0">Free plan to try the flow</li>
+          <li style="margin:8px 0">Pro when you run packs often</li>
+          <li style="margin:8px 0">Same brief structure every time you return</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="container">
+      <div class="section-head"><h2>How it works</h2><p>Intake → qualify → compare. Use it again next month.</p></div>
+      <div class="steps"><div class="step"><div class="n">1</div><h3>Describe the pool</h3><p>Type, issues, service frequency.</p></div>
+<div class="step"><div class="n">2</div><h3>Get your pack</h3><p>Routine score and technician questions.</p></div>
+<div class="step"><div class="n">3</div><h3>Compare plans</h3><p>Stay on top of recurring care.</p></div></div>
+    </div>
+  </section>
+
+  <section id="membership">
+    <div class="container">
+      <div class="section-head"><h2>Membership</h2><p>Subscriptions make sense when you come back. Start free.</p></div>
+      <div class="membership-grid">
+        <div class="plan">
+          <h3>Free</h3>
+          <div class="price">R0 <span>/ month</span></div>
+          <p class="muted">Try the flow</p>
+          <ul>
+            <li><strong>3 packs</strong> / month</li>
+            <li>Core score + brief</li>
+            <li>Latest 3 in history</li>
+          </ul>
+          <a class="btn btn-secondary" href="#account">Create free account</a>
+        </div>
+        <div class="plan featured">
+          <div class="badge">BEST FOR REPEAT USE</div>
+          <h3>Pro</h3>
+          <div class="price">R99 <span>/ month</span></div>
+          <p class="muted">Monthly routines</p>
+          <ul>
+            <li><strong>Unlimited</strong> packs</li>
+            <li>Full history</li>
+            <li>Full question sets</li>
+          </ul>
+          <a class="btn btn-primary" id="payPro" href="https://www.paypal.com/ncp/payment/K3PDJD687RXG4" target="_blank" rel="noopener">Pay for Pro →</a>
+        </div>
+        <div class="plan">
+          <h3>Elite</h3>
+          <div class="price">R199 <span>/ month</span></div>
+          <p class="muted">Power users</p>
+          <ul>
+            <li>Everything in Pro</li>
+            <li><strong>Elite plays</strong></li>
+            <li>Advanced notes</li>
+          </ul>
+          <a class="btn btn-secondary" id="payElite" href="https://www.paypal.com/ncp/payment/W98DZVAAS5CAJ" target="_blank" rel="noopener">Pay for Elite →</a>
+        </div>
+      </div>
+      <div class="panel" style="margin-top:24px">
+        <h3>Payments &amp; entitlement</h3>
+        <p class="muted">Pay with PayPal. After payment, return to this site signed in with the <strong>same email</strong> so Pro/Elite can activate.</p>
+        <div class="pay-actions">
+          <a class="btn btn-primary" id="payPro2" href="https://www.paypal.com/ncp/payment/K3PDJD687RXG4" target="_blank" rel="noopener">Pay for Pro — R99/mo →</a>
+          <a class="btn btn-secondary" id="payElite2" href="https://www.paypal.com/ncp/payment/W98DZVAAS5CAJ" target="_blank" rel="noopener">Pay for Elite — R199/mo →</a>
+        </div>
+        <p class="note">Tip: after paying, open this page again while signed in. If your PayPal return URL includes ?paid=pro or ?paid=elite, activation can happen automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="account">
+    <div class="container">
+      <div class="section-head"><h2>Account</h2><p>Sign in to save packs and unlock Pro/Elite limits.</p></div>
+      <div class="panel">
+        <div class="tabs">
+          <button class="tab active" type="button" data-auth-tab="signin">Sign in</button>
+          <button class="tab" type="button" data-auth-tab="signup">Create account</button>
+        </div>
+        <form id="authForm">
+          <div class="form-grid">
+            <div class="field full"><label for="authEmail">Email</label><input id="authEmail" type="email" required placeholder="you@email.com"></div>
+            <div class="field full"><label for="authPassword">Password</label><input id="authPassword" type="password" required minlength="6" placeholder="At least 6 characters"></div>
+          </div>
+          <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-primary" id="authSubmit" type="submit">Sign in</button>
+            <button class="btn btn-ghost" id="authSignOut" type="button" style="display:none">Sign out</button>
+          </div>
+          <p class="note" id="authMessage"></p>
+          <p class="usage" id="planStatus">Not signed in</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="workspace">
+    <div class="container">
+      <div class="section-head"><h2>Pool brief</h2><p>Generate a pack now — and again next month when things change.</p></div>
+      <div class="panel">
+        <form id="packForm">
+          <div class="form-grid">
+            <div class="field"><label for="type">Pool type</label><select id="type" required><option value="" disabled selected>Select…</option><option value="Residential concrete">Residential concrete</option><option value="Fibreglass">Fibreglass</option><option value="Portable / plunge">Portable / plunge</option><option value="Not sure">Not sure</option></select></div>
+<div class="field"><label for="need">Main need</label><select id="need" required><option value="" disabled selected>Select…</option><option value="Weekly maintenance">Weekly maintenance</option><option value="Green pool recovery">Green pool recovery</option><option value="Equipment issue">Equipment issue</option><option value="Seasonal open/close">Seasonal open/close</option></select></div>
+<div class="field"><label for="freq">Desired frequency</label><select id="freq" required><option value="" disabled selected>Select…</option><option value="Weekly">Weekly</option><option value="Fortnightly">Fortnightly</option><option value="Monthly">Monthly</option><option value="Once-off">Once-off</option></select></div>
+<div class="field"><label for="timing">Timing</label><select id="timing" required><option value="" disabled selected>Select…</option><option value="ASAP">ASAP</option><option value="This week">This week</option><option value="This month">This month</option><option value="Planning">Planning</option></select></div>
+            <div class="field full"><label for="detail">Details</label><textarea id="detail" required placeholder="e.g. 8x4 residential pool, weekly service, pump noisy, chemicals included or not..."></textarea></div>
+            <div class="field full"><label for="notes">Extra notes (optional)</label><textarea id="notes" placeholder="Anything else to include in the brief..."></textarea></div>
+          </div>
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+            <button class="btn btn-primary" type="submit" id="packBtn">Generate pool pack</button>
+            <span class="usage" id="usageText"></span>
+          </div>
+          <div class="usage-bar" id="usageBar" style="display:none"><span id="usageFill"></span></div>
+          <div class="locked" id="limitLock" style="display:none">Free limit reached (3 packs this month). Upgrade to Pro for unlimited packs.</div>
+          <div id="resultBox" style="display:none"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="history">
+    <div class="container">
+      <div class="section-head"><h2>Pack history</h2><p>Free keeps latest 3. Pro/Elite keep full history for recurring decisions.</p></div>
+      <div class="panel"><div id="historyList"><p class="muted">Sign in and generate a pack to see history.</p></div></div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-head"><h2>What people say</h2></div>
+      <div class="cards"><div class="card testimonial"><div class="stars">★★★★★</div><p>“Weekly plan inclusions were finally comparable.”</p><div class="t-meta"><strong>Johan B.</strong><span>Polokwane</span></div></div>
+<div class="card testimonial"><div class="stars">★★★★★</div><p>“Green pool call-out terms asked up front.”</p><div class="t-meta"><strong>Amira S.</strong><span>Durban</span></div></div>
+<div class="card testimonial"><div class="stars">★★★★★</div><p>“Stay on a plan, re-check once a year.”</p><div class="t-meta"><strong>Tshepo M.</strong><span>Johannesburg</span></div></div></div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="section-head"><h2>FAQ</h2></div>
+      <div class="faq"><details open><summary>Is this a pool company?</summary><p>No. PoolCare helps you compare pool services.</p></details>
+<details><summary>Emergency green pool?</summary><p>Yes — mark urgency and still compare call-out terms.</p></details>
+<details><summary>Built for ongoing contracts?</summary><p>Yes.</p></details>
+<details><summary>Is this technical repair advice?</summary><p>No. Technicians diagnose equipment on site.</p></details></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-head"><h2>Contact &amp; feedback</h2></div>
+      <div class="panel" style="text-align:center;max-width:640px;margin:0 auto">
+        <a class="btn btn-primary" href="https://forms.gle/Ggm7sGfq3hkzV1D39" target="_blank" rel="noopener">Open contact / feedback form →</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="container footer-row">
+    <div>© 2026 PoolCare AI · Pool services</div>
+    <div>Recurring-use agent · Free plan included</div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SB_URL="https://omiynmichresemvmhtwu.supabase.co";
+const SB_KEY="sb_publishable_RmG-NaWz5A0d-yyjxgvc_Q_hKzcn2LN";
+const AGENT="poolcare";
+const NAME="PoolCare";
+function getRedirectUrl(){const c=window.location.href.split('#')[0].split('?')[0];return window.location.protocol==='file:'?'http://localhost:5500/index.html':c}
+const client=window.supabase.createClient(SB_URL,SB_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+const PLANS={free:{code:'free',name:'Free',limit:3,history:3,elite:false},pro:{code:'pro',name:'Pro',limit:9999,history:9999,elite:false},elite:{code:'elite',name:'Elite',limit:9999,history:9999,elite:true}};
+let currentUser=null,currentPlan=PLANS.free,authMode='signin',monthUsage=0;
+const $=id=>document.getElementById(id);
+function setAuthMessage(t,e){const el=$('authMessage');if(!el)return;el.textContent=t||'';el.className='note '+(e?'error':'success')}
+function monthKey(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')}
+function storageKey(s){return AGENT+'_'+(currentUser?.id||'anon')+'_'+s}
+function loadLocalUsage(){try{monthUsage=Number(localStorage.getItem(storageKey('usage_'+monthKey()))||0)||0}catch{monthUsage=0}}
+function saveLocalUsage(){try{localStorage.setItem(storageKey('usage_'+monthKey()),String(monthUsage))}catch{}}
+function loadLocalHistory(){try{return JSON.parse(localStorage.getItem(storageKey('history'))||'[]')}catch{return[]}}
+function saveLocalHistory(items){try{localStorage.setItem(storageKey('history'),JSON.stringify(items.slice(0,currentPlan.history)))}catch{}}
+async function loadPlanFromSupabase(){
+  if(!currentUser){currentPlan=PLANS.free;return}
+  try{
+    const {data,error}=await client.from('subscriptions').select('plan_code,status').eq('user_id',currentUser.id).maybeSingle();
+    if(!error&&data) currentPlan=PLANS[(data.plan_code||'free').toLowerCase()]||PLANS.free; else currentPlan=PLANS.free;
+  }catch{currentPlan=PLANS.free}
+}
+function updatePlanUI(){
+  const used=monthUsage,limit=currentPlan.limit;
+  $('planStatus').textContent=currentUser?('Signed in as '+currentUser.email+' · '+currentPlan.name+(currentPlan.code==='free'?' · '+used+'/'+limit+' packs':' · Unlimited')):'Not signed in';
+  $('usageText').textContent=currentPlan.code==='free'?(used+' of '+limit+' free packs used this month'):(currentPlan.name+' · unlimited');
+  if(currentPlan.code==='free'){$('usageBar').style.display='block';$('usageFill').style.width=Math.min(100,(used/limit)*100)+'%'}else $('usageBar').style.display='none';
+  $('limitLock').style.display=(currentPlan.code==='free'&&used>=limit)?'block':'none';
+  $('packBtn').disabled=(currentPlan.code==='free'&&used>=limit);
+}
+function renderHistory(){
+  const items=loadLocalHistory(),list=$('historyList');
+  if(!items.length){list.innerHTML='<p class="muted">No saved packs yet.</p>';return}
+  list.innerHTML=items.map(i=>'<div class="history-item"><strong>'+i.title+'</strong><span class="muted"> · '+i.when+' · score '+i.score+'</span></div>').join('');
+}
+function scoreInput(vals){
+  let s=40;
+  const joined=Object.values(vals).join(' ').toLowerCase();
+  if(/weekly|monthly|repeat|chronic|renew|upgrade|switching|asap|emergency/.test(joined)) s+=18;
+  if(/this month|this week|full day|heavy/.test(joined)) s+=10;
+  return Math.max(20, Math.min(96, s));
+}
+function readinessLabel(score){
+  if(score>=80) return 'STRONG — ready to compare options with a clear recurring brief';
+  if(score>=55) return 'PROMISING — shortlist 2 options and tighten details';
+  if(score>=35) return 'DEVELOPING — clarify frequency and priorities';
+  return 'EARLY — research phase';
+}
+function buildPack(vals){
+  const score=scoreInput(vals);
+  const detail=(vals.detail||'').trim();
+  const notes=(vals.notes||'').trim();
+  const qualify=Object.entries(vals).filter(([k])=>k!=='detail'&&k!=='notes').map(([k,v])=>k+': '+v);
+  qualify.push('Detail: '+detail.slice(0,220)+(detail.length>220?'…':''));
+  const checklist=['Write the recurring frequency (weekly/monthly/renewal date)','Ask the same must-ask questions to every option','Prefer written scope before debit orders','Save this pack and re-run when needs change'];
+  const mustAsk=['What is included every month vs extra fees?','How do upgrades, pauses or cancellations work?','What is the response time / delivery / service promise?','Any lock-in period or exit fees?','What changed for customers in the last year?','How do we review performance after 30–90 days?'];
+  const actions=['Send this brief to 2 options and compare written replies','Calendar a revisit date (renewal or monthly review)','Avoid long contracts until scope is clear'];
+  const elite=['Recurring rule: only continue if monthly inclusions are written','Cost truth: annualise monthly fees before comparing','Fit test: after 30 days, score reliability and support'];
+  let html='<div class="report"><h4>'+NAME+' pack</h4><div class="score">Score: '+score+' / 100</div>';
+  html+='<p><strong>Band:</strong> '+readinessLabel(score)+'</p>';
+  html+='<p style="margin-top:12px"><strong>Snapshot</strong></p><ul>'+qualify.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  html+='<p style="margin-top:12px"><strong>Recurring checklist</strong></p><ul>'+checklist.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  html+='<p style="margin-top:12px"><strong>Must-ask questions</strong></p><ul>'+mustAsk.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  html+='<p style="margin-top:12px"><strong>Next actions</strong></p><ul>'+actions.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  if(notes) html+='<p class="muted" style="margin-top:10px">Notes: '+notes+'</p>';
+  if(currentPlan.elite) html+='<p style="margin-top:12px"><strong>Elite plays</strong></p><ul>'+elite.map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  else html+='<p class="note">Upgrade to Elite for recurring decision plays.</p>';
+  html+='<p class="note">Planning aid only — not professional, medical or financial advice.</p></div>';
+  return {title:NAME+' · score '+score, when:new Date().toLocaleString(), score, html};
+}
+async function canGenerate(){
+  if(!currentUser){setAuthMessage('Sign in first so we can apply plan limits.',true);document.getElementById('account').scrollIntoView({behavior:'smooth'});return false}
+  await loadPlanFromSupabase();loadLocalUsage();updatePlanUI();
+  if(currentPlan.code==='free'&&monthUsage>=currentPlan.limit){$('limitLock').style.display='block';return false}
+  return true;
+}
+async function refreshSession(){
+  const {data}=await client.auth.getSession();currentUser=data.session?.user||null;
+  $('authSignOut').style.display=currentUser?'inline-flex':'none';
+  $('authSubmit').textContent=authMode==='signup'?'Create account':(currentUser?'Signed in':'Sign in');
+  await loadPlanFromSupabase();loadLocalUsage();updatePlanUI();renderHistory();
+}
+document.querySelectorAll('[data-auth-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('[data-auth-tab]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  authMode=btn.getAttribute('data-auth-tab');$('authSubmit').textContent=authMode==='signup'?'Create account':'Sign in';setAuthMessage('');
+}));
+$('authForm').addEventListener('submit',async e=>{
+  e.preventDefault();const email=$('authEmail').value.trim(),password=$('authPassword').value;
+  setAuthMessage(authMode==='signup'?'Creating account...':'Signing in...');
+  try{
+    if(authMode==='signup'){const {data,error}=await client.auth.signUp({email,password,options:{emailRedirectTo:getRedirectUrl()}});if(error)throw error;setAuthMessage(data.user&&!data.session?'Check your email to confirm.':'Account created.')}
+    else{const {error}=await client.auth.signInWithPassword({email,password});if(error)throw error;setAuthMessage('Signed in.')}
+    await refreshSession();
+  }catch(err){setAuthMessage(err.message||'Auth failed',true)}
+});
+$('authSignOut').addEventListener('click',async()=>{await client.auth.signOut();currentUser=null;currentPlan=PLANS.free;setAuthMessage('Signed out.');await refreshSession()});
+$('packForm').addEventListener('submit',async e=>{
+  e.preventDefault();if(!(await canGenerate()))return;
+  const vals={detail:$('detail').value,notes:$('notes').value};
+  document.querySelectorAll('#packForm select').forEach(s=>vals[s.id]=s.value);
+  const pack=buildPack(vals);$('resultBox').style.display='block';$('resultBox').innerHTML=pack.html;
+  monthUsage+=1;saveLocalUsage();const history=loadLocalHistory();history.unshift({title:pack.title,when:pack.when,score:pack.score});saveLocalHistory(history);updatePlanUI();renderHistory();
+});
+async function tryAutoActivate(){
+  const params=new URLSearchParams(window.location.search);
+  let paid=(params.get('paid')||'').toLowerCase();
+  if(paid!=='pro'&&paid!=='elite') return;
+  const {data}=await client.auth.getSession();
+  const user=data.session?.user;
+  if(!user){setAuthMessage('Payment received. Sign in with the same email to activate '+paid.toUpperCase()+'.');return}
+  try{
+    const {error}=await client.from('subscriptions').upsert({user_id:user.id,plan_code:paid,status:'active',agent:AGENT,updated_at:new Date().toISOString()},{onConflict:'user_id'});
+    if(error) throw error;
+    setAuthMessage(paid.toUpperCase()+' activated for '+user.email);
+    await refreshSession();
+  }catch(err){setAuthMessage('Could not auto-activate: '+(err.message||err),true)}
+}
+client.auth.onAuthStateChange(async()=>{await refreshSession()});
+refreshSession();tryAutoActivate();
+</script>
+</body>
+</html>
